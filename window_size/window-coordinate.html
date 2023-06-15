@@ -19,6 +19,12 @@
       .special {
         background-color: deeppink;
       }
+
+      aside {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
     </style>
   </head>
   <body>
@@ -32,7 +38,11 @@
     <div class="special"></div>
     <div></div>
     <div></div>
-
+    <aside>
+      <button class="scroll-by">Scroll by 100px(y)</button>
+      <button class="scroll-to">Scroll to 100px(y)</button>
+      <button class="scroll-into">Scroll into special</button>
+    </aside>
     <script>
       const special = document.querySelector(".special");
 
@@ -43,6 +53,21 @@
         console.log(`client: ${e.clientX}, ${e.clientY}`);
         // page 좌표는 실제 해당 페이지의 최상단에서부터의 x,y좌표를 의미
         console.log(`page: ${e.pageX}, ${e.pageY}`);
+      });
+
+      // window scroll apis
+      const scrollBy = document.querySelector(".scroll-by");
+      const scrollTo = document.querySelector(".scroll-to");
+      const scrollInto = document.querySelector(".scroll-into");
+
+      scrollBy.addEventListener("click", () => {
+        window.scrollBy({ top: 100, left: 0, behavior: "smooth" });
+      });
+      scrollTo.addEventListener("click", () => {
+        window.scrollTo(0, 100);
+      });
+      scrollInto.addEventListener("click", () => {
+        special.scrollIntoView();
       });
     </script>
   </body>
