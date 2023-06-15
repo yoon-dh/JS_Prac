@@ -21,6 +21,10 @@
       const tag = document.querySelector(".tag");
 
       function updateTag() {
+        // window.screen : 현재 모니터 스크린 크기(불변)
+        // window.outer : 현재 브라우저 전체 크기(Tap, URL 포함)
+        // window.inner : 현재 브라우저 전체 크기(Tap, URL 제외)
+        // documentElement.client : 우측 스크롤바 등 제외한 유저가 사용하게 되는 브라우저 크기
         tag.innerHTML = `
             window.screen: ${window.screen.width}, ${window.screen.height} <br>
             window.outer: ${window.outerWidth}, ${window.outerHeight} <br>
