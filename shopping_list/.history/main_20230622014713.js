@@ -4,13 +4,8 @@ const addBtn = document.querySelector(".footer_button");
 
 function onAdd() {
   const text = input.value;
-  if (text === "") {
-    input.focus();
-    return;
-  }
   const item = createItem(text);
   items.appendChild(item);
-  item.scrollIntoView({ block: "center" });
   input.value = "";
   input.focus();
 }
@@ -20,7 +15,7 @@ function createItem(text) {
   itemRow.setAttribute("class", "item_row");
 
   const item = document.createElement("div");
-  item.setAttribute("class", "item");
+  itemRow.setAttribute("class", "item");
 
   const name = document.createElement("span");
   name.setAttribute("class", "item_name");
@@ -49,11 +44,4 @@ function createItem(text) {
 
 addBtn.addEventListener("click", () => {
   onAdd();
-});
-
-input.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    onAdd();
-  }
-  return;
 });

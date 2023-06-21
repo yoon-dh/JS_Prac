@@ -10,7 +10,6 @@ function onAdd() {
   }
   const item = createItem(text);
   items.appendChild(item);
-  item.scrollIntoView({ block: "center" });
   input.value = "";
   input.focus();
 }
@@ -52,7 +51,7 @@ addBtn.addEventListener("click", () => {
 });
 
 input.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
+  if ((e.key = "Enter")) {
     onAdd();
   }
   return;

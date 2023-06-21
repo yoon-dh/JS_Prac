@@ -10,7 +10,7 @@ function onAdd() {
   }
   const item = createItem(text);
   items.appendChild(item);
-  item.scrollIntoView({ block: "center" });
+  item.scrollIntoView({ block: "end" });
   input.value = "";
   input.focus();
 }
