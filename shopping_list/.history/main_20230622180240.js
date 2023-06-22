@@ -46,9 +46,11 @@ input.addEventListener("keypress", (e) => {
 });
 
 items.addEventListener("click", (e) => {
+  console.log(e.target.dataset.id);
   const id = e.target.dataset.id;
   if (id) {
     const toBeDeleted = document.querySelector(`.item_row[data-id="${id}"]`);
-    toBeDeleted.remove();
+    console.log(toBeDeleted);
+    toBeDeleted.remove;
   }
 });

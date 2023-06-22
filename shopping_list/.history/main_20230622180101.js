@@ -49,6 +49,6 @@ items.addEventListener("click", (e) => {
   const id = e.target.dataset.id;
   if (id) {
     const toBeDeleted = document.querySelector(`.item_row[data-id="${id}"]`);
-    toBeDeleted.remove();
+    toBeDeleted.remove;
   }
 });
