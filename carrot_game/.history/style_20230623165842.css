@@ -1,0 +1,9 @@
+body {
+  background-color: black;
+}
+
+.carrot_game {
+  width: 1200px;
+  height: 1200px;
+  background-image: url("img/background.png");
+}

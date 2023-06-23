@@ -1,0 +1,15 @@
+/* body {
+  background-color: black;
+} */
+
+.carrot_game {
+  width: 100%;
+  height: auto;
+  background-image: url("img/background.png");
+  background-size: 100% auto;
+}
+
+.fa-rotate-right {
+  width: 100px;
+  height: 100px;
+}
