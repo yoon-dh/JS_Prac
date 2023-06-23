@@ -5,7 +5,6 @@
 const CARROT_SIZE = 80;
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
-const GAME_DURATION_SEC = 5;
 
 const field = document.querySelector(".game__field");
 const fieldRect = field.getBoundingClientRect();
@@ -17,56 +16,7 @@ let started = false;
 let score = 0;
 let timer = undefined;
 
-gameBtn.addEventListener("click", () => {
-  if (started) {
-    stopGame();
-  } else {
-    startGame();
-  }
-  started = !started;
-});
-
-function startGame() {
-  initGame();
-  showStopButton();
-  showTimerAndScore();
-  startGameTimer();
-}
-
-function stopGame() {}
-
-function showStopButton() {
-  const icon = gameBtn.querySelector(".fa-play");
-  icon.classList.add("fa-stop");
-  icon.classList.remove("fa-play");
-}
-
-function showTimerAndScore() {
-  gameTimer.style.visibility = "visible";
-  gameScore.style.visibility = "visible";
-}
-
-function startGameTimer() {
-  let remainingTimeSec = GAME_DURATION_SEC;
-  updateTimerText(remainingTimeSec);
-  timer = setInterval(() => {
-    if (remainingTimeSec <= 0) {
-      clearInterval(timer);
-      return;
-    }
-    updateTimerText(--remainingTimeSec);
-  }, 1000);
-}
-
-function updateTimerText(time) {
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
-  gameTimer.innerText = `${minutes}:${seconds}`;
-}
-
 function initGame() {
-  field.innerHTML = "";
-  gameScore.innerText = CARROT_COUNT;
   addItem("carrot", CARROT_COUNT, "img/carrot.png");
   addItem("bug", BUG_COUNT, "img/bug.png");
 }
@@ -93,3 +43,23 @@ function addItem(className, count, imgPath) {
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
+
+// time & carrot count
+
+let countdown; // 타이머 식별자
+let time = 10; // 초기 시간 설정 (단위: 초)
+
+function startTimer() {
+  countdown = setInterval(() => {
+    time--;
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  timer.textContent = time;
+}
+
+gameBtn.addEventListener("click", () => {
+  startTimer();
+});
