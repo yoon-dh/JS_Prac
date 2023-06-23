@@ -61,7 +61,6 @@ body {
 }
 
 .game__field {
-  position: relative;
   width: 100%;
   height: 100%;
   margin-top: 40px;
