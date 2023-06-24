@@ -16,12 +16,6 @@ const popup = document.querySelector(".pop-up");
 const popupMessage = document.querySelector(".pop-up__message");
 const popupRefresh = document.querySelector(".pop-up__refresh");
 
-const carrotSound = new Audio("./sound/carrot_pull.mp3");
-const alertSound = new Audio("./sound/alert.wav");
-const bugSound = new Audio("./sound/bug_pull.mp3");
-const bgSound = new Audio("./sound/bg.mp3");
-const winSound = new Audio("./sound/game_win.mp3");
-
 let started = false;
 let score = 0;
 let timer = undefined;
@@ -46,8 +40,8 @@ function startGame() {
   initGame();
   showStopButton();
   showTimerAndScore();
+  showGameButton();
   startGameTimer();
-  playSound(bgSound);
 }
 
 function stopGame() {
@@ -55,21 +49,16 @@ function stopGame() {
   hideGameButton();
   stopGameTimer();
   showPopup(replay);
-  playSound(alertSound);
-  stopSound(bgSound);
 }
 
 function finishGame(win) {
   started = false;
   hideGameButton();
-  if (win) {
-    playSound(winSound);
-  } else {
-    playSound(bugSound);
-  }
-  stopGameTimer();
-  stopSound(bgSound);
   showPopup(win ? "YOU WON" : "YOU LOST");
+}
+
+function showGameButton() {
+  gameBtn.style.visibility = "visible";
 }
 
 function hideGameButton() {
@@ -89,8 +78,10 @@ function hidePopup() {
 
 function showStopButton() {
   const icon = gameBtn.querySelector(".fas");
-  icon.classList.add("fa-stop");
-  icon.classList.remove("fa-play");
+  if (icon) {
+    icon.classList.add("fa-stop");
+    icon.classList.remove("fa-play");
+  }
 }
 
 function showTimerAndScore() {
@@ -122,7 +113,6 @@ function updateTimerText(time) {
 }
 
 function initGame() {
-  score = 0;
   field.innerHTML = "";
   gameScore.innerText = CARROT_COUNT;
   addItem("carrot", CARROT_COUNT, "img/carrot.png");
@@ -162,25 +152,16 @@ function onFieldClick(event) {
   if (target.matches(".carrot")) {
     target.remove();
     score++;
-    playSound(carrotSound);
     updateScoreBoard();
     if (score === CARROT_COUNT) {
       finishGame(true);
     }
   } else if (target.matches(".bug")) {
+    stopGameTimer();
     finishGame(false);
   }
 }
 
 function updateScoreBoard() {
   gameScore.innerText = CARROT_COUNT - score;
-}
-
-function playSound(sound) {
-  sound.currentTime = 0;
-  sound.play();
-}
-
-function stopSound(sound) {
-  sound.pause();
 }

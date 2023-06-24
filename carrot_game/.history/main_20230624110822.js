@@ -67,7 +67,6 @@ function finishGame(win) {
   } else {
     playSound(bugSound);
   }
-  stopGameTimer();
   stopSound(bgSound);
   showPopup(win ? "YOU WON" : "YOU LOST");
 }
@@ -165,9 +164,11 @@ function onFieldClick(event) {
     playSound(carrotSound);
     updateScoreBoard();
     if (score === CARROT_COUNT) {
+      stopGameTimer();
       finishGame(true);
     }
   } else if (target.matches(".bug")) {
+    stopGameTimer();
     finishGame(false);
   }
 }

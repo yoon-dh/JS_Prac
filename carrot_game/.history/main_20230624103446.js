@@ -16,12 +16,6 @@ const popup = document.querySelector(".pop-up");
 const popupMessage = document.querySelector(".pop-up__message");
 const popupRefresh = document.querySelector(".pop-up__refresh");
 
-const carrotSound = new Audio("./sound/carrot_pull.mp3");
-const alertSound = new Audio("./sound/alert.wav");
-const bugSound = new Audio("./sound/bug_pull.mp3");
-const bgSound = new Audio("./sound/bg.mp3");
-const winSound = new Audio("./sound/game_win.mp3");
-
 let started = false;
 let score = 0;
 let timer = undefined;
@@ -38,7 +32,6 @@ gameBtn.addEventListener("click", () => {
 
 popupRefresh.addEventListener("click", () => {
   startGame();
-  hidePopup();
 });
 
 function startGame() {
@@ -47,7 +40,6 @@ function startGame() {
   showStopButton();
   showTimerAndScore();
   startGameTimer();
-  playSound(bgSound);
 }
 
 function stopGame() {
@@ -55,20 +47,11 @@ function stopGame() {
   hideGameButton();
   stopGameTimer();
   showPopup(replay);
-  playSound(alertSound);
-  stopSound(bgSound);
 }
 
 function finishGame(win) {
   started = false;
   hideGameButton();
-  if (win) {
-    playSound(winSound);
-  } else {
-    playSound(bugSound);
-  }
-  stopGameTimer();
-  stopSound(bgSound);
   showPopup(win ? "YOU WON" : "YOU LOST");
 }
 
@@ -83,12 +66,8 @@ function showPopup(text) {
   popupMessage.innerText = text;
 }
 
-function hidePopup() {
-  popup.classList.add("pop-up--hide");
-}
-
 function showStopButton() {
-  const icon = gameBtn.querySelector(".fas");
+  const icon = gameBtn.querySelector(".fa");
   icon.classList.add("fa-stop");
   icon.classList.remove("fa-play");
 }
@@ -122,7 +101,6 @@ function updateTimerText(time) {
 }
 
 function initGame() {
-  score = 0;
   field.innerHTML = "";
   gameScore.innerText = CARROT_COUNT;
   addItem("carrot", CARROT_COUNT, "img/carrot.png");
@@ -162,25 +140,16 @@ function onFieldClick(event) {
   if (target.matches(".carrot")) {
     target.remove();
     score++;
-    playSound(carrotSound);
     updateScoreBoard();
     if (score === CARROT_COUNT) {
       finishGame(true);
     }
   } else if (target.matches(".bug")) {
+    stopGameTimer();
     finishGame(false);
   }
 }
 
 function updateScoreBoard() {
   gameScore.innerText = CARROT_COUNT - score;
-}
-
-function playSound(sound) {
-  sound.currentTime = 0;
-  sound.play();
-}
-
-function stopSound(sound) {
-  sound.pause();
 }

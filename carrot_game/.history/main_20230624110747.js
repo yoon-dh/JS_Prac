@@ -67,7 +67,6 @@ function finishGame(win) {
   } else {
     playSound(bugSound);
   }
-  stopGameTimer();
   stopSound(bgSound);
   showPopup(win ? "YOU WON" : "YOU LOST");
 }
@@ -168,6 +167,7 @@ function onFieldClick(event) {
       finishGame(true);
     }
   } else if (target.matches(".bug")) {
+    stopGameTimer();
     finishGame(false);
   }
 }

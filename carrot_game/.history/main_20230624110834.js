@@ -67,7 +67,6 @@ function finishGame(win) {
   } else {
     playSound(bugSound);
   }
-  stopGameTimer();
   stopSound(bgSound);
   showPopup(win ? "YOU WON" : "YOU LOST");
 }
