@@ -3,8 +3,8 @@
 // carrot & bug random position
 
 const CARROT_SIZE = 80;
-const CARROT_COUNT = 20;
-const BUG_COUNT = 20;
+const CARROT_COUNT = 5;
+const BUG_COUNT = 5;
 const GAME_DURATION_SEC = 5;
 
 const field = document.querySelector(".game__field");
