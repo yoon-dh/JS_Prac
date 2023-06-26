@@ -122,7 +122,7 @@ class Game {
     this.timer = setInterval(() => {
       if (remainingTimeSec <= 0) {
         clearInterval(this.timer);
-        this.finish(this.carroutCount === this.score);
+        this.finishGame(this.carroutCount === this.score);
         return;
       }
       this.updateTimerText(--remainingTimeSec);
