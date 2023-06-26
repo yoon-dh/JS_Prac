@@ -8,7 +8,7 @@ export const Reason = Object.freeze({
 });
 
 // Builder Pattern
-export class GameBuilder {
+export default class GameBuilder {
   gameDuration(duration) {
     this.gameDuration = duration;
     return this;

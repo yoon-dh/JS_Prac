@@ -8,7 +8,7 @@ export const Reason = Object.freeze({
 });
 
 // Builder Pattern
-export class GameBuilder {
+export default class GameBuilder {
   gameDuration(duration) {
     this.gameDuration = duration;
     return this;
@@ -74,7 +74,7 @@ class Game {
     this.stopGameTimer();
     sound.playAlert();
     sound.stopBackGround();
-    this.onGameStop && this.onGameStop(Reason.cancel);
+    this.onGameStop && this.onGameStop("cancel");
   }
 
   finish(win) {
@@ -87,7 +87,7 @@ class Game {
     }
     this.stopGameTimer();
     sound.stopBackGround();
-    this.onGameStop && this.onGameStop(win ? Reason.win : Reason.lose);
+    this.onGameStop && this.onGameStop(win ? "win" : "lose");
   }
 
   onItemClick = (item) => {

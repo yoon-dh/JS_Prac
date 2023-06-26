@@ -12,15 +12,16 @@ const game = new GameBuilder()
   .build();
 
 game.setGameStopListener((reason) => {
+  console.log(reason);
   let message;
   switch (reason) {
-    case Reason.cancel:
+    case "cancel":
       message = "Replay?";
       break;
-    case Reason.win:
+    case "win":
       message = "YOU WON";
       break;
-    case Reason.lose:
+    case "lose":
       message = "YOU LOST";
       break;
     default:
