@@ -26,5 +26,5 @@ game.setGameStopListener((reason) => {
 });
 
 gameFinishBanner.setClickListener(() => {
-  game.start();
+  game.start;
 });

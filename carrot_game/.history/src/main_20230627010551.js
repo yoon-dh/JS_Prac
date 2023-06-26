@@ -4,6 +4,9 @@ import PopUp from "./popup.js";
 import Game from "./game.js";
 
 const gameFinishBanner = new PopUp();
+gameFinishBanner.setClickListener(() => {
+  startGame();
+});
 
 const game = new Game(5, 2, 2);
 game.setGameStopListener((reason) => {
@@ -23,8 +26,4 @@ game.setGameStopListener((reason) => {
       throw new Error("not valid reason");
   }
   gameFinishBanner.showWithText(message);
-});
-
-gameFinishBanner.setClickListener(() => {
-  game.start();
 });
