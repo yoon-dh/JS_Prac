@@ -53,9 +53,9 @@ export class Field {
     if (target.matches(".carrot")) {
       target.remove();
       sound.playCarrot();
-      this.onItemClick && this.onItemClick(ItemType.carrot);
+      this.onItemClick && this.onItemClick("carrot");
     } else if (target.matches(".bug")) {
-      this.onItemClick && this.onItemClick(ItemType.bug);
+      this.onItemClick && this.onItemClick("bug");
     }
   }
 }
